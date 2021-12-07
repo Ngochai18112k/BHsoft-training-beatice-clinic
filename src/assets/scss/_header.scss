@@ -1,0 +1,113 @@
+.header {
+    margin-top: 41px;
+    &-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .header-right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            .menu {
+                margin: 0 20px;
+                &-list {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    list-style: none;
+                    .menu-item {
+                        &:hover {
+                            .menu-link {
+                                color: $heading-color;
+                            }
+                        }
+                        .menu-link {
+                            margin: 0 23px;
+                            font-size: 1.6rem;
+                            line-height: 2.4;
+                            font-weight: 500;
+                            cursor: pointer;
+                            color: inherit;
+                            &.active {
+                                color: $heading-color;
+                                position: relative;
+                                &::after {
+                                    position: absolute;
+                                    top: 50%;
+                                    right: -10px;
+                                    content: "";
+                                    width: 7px;
+                                    border: 1px solid $heading-color;
+                                    transform: rotate(-180deg);
+                                }
+                                &::before {
+                                    position: absolute;
+                                    top: 50%;
+                                    right: -10px;
+                                    content: "";
+                                    width: 7px;
+                                    border: 1px solid $heading-color;
+                                    transform: rotate(90deg);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .header-toggle {
+            display: none;
+        }
+        @media screen and (max-width: 768px) {
+            .header-right {
+                display: none;
+                &.active {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    position: absolute;
+                    width: 100%;
+                    top: 0;
+                    left: 0;
+                    opacity: 1;
+                    z-index: 10;
+                    height: 100vh;
+                    background: $bg-opacity;
+                    transition: all 0.3s ease-in-out;
+                    .menu-list {
+                        flex-direction: column;
+                        margin-bottom: 30px;
+                    }
+                }
+            }
+            .header-toggle {
+                display: block;
+                height: 100%;
+                .bar {
+                    width: 40px;
+                    height: 5px;
+                    margin: 5px auto;
+                    transition: all 0.3s ease-in-out;
+                    background: $heading-color;
+                    display: block;
+                    border-radius: 3px;
+                    cursor: pointer;
+                }
+            }
+            #mobile-menu {
+                padding: 0 20px;
+                z-index: 99;
+                &.is-active .bar:nth-child(2) {
+                    opacity: 0;
+                }
+                &.is-active .bar:nth-child(1) {
+                    transform: translateY(10px) rotate(45deg);
+                }
+                &.is-active .bar:nth-child(3) {
+                    transform: translateY(-10px) rotate(-45deg);
+                }
+            }
+        }
+    }
+}
